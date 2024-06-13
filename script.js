@@ -1,27 +1,25 @@
-let areasOfDrop = Array.from(document.querySelectorAll(".image"));
 let ct = 1;
-
+let areasOfDrop = Array.from(document.querySelectorAll(".image"));
 areasOfDrop.forEach(div => {
     div.id = `div${ct++}`;
-});
-
-areasOfDrop.forEach(div => {
-    div.addEventListener("dragstart", (event) => {
-        event.dataTransfer.setData("div", div.id);
+	 div.addEventListener("dragstart", event => {
+        event.dataTransfer.setData("div", event.target.id);
     });
 
-    div.addEventListener("dragover", (event) => {
+    div.addEventListener("dragover", event => {
         event.preventDefault();
     });
 
-    div.addEventListener("drop", (event) => {
+    div.addEventListener("drop", event => {
         event.preventDefault();
-        let perID = event.dataTransfer.getData("div");
-        let selectDiv = document.getElementById(perID);
-        let droparea = event.target;
-
-        let temp = selectDiv.style.backgroundImage;
-        selectDiv.style.backgroundImage = droparea.style.backgroundImage;
-        droparea.style.backgroundImage = temp;
+        let preID = event.dataTransfer.getData("div");
+        let selectedArea = document.getElementById(preID);
+        let dropArea = event.target;
+        let tempBackground = getComputedStyle(dropArea).backgroundImage;
+        dropArea.style.backgroundImage = getComputedStyle(selectedArea).backgroundImage;
+        selectedArea.style.backgroundImage = tempBackground;
+		let t=selectedArea.innerText;
+		selectedArea.innerText=dropArea.innerText;
+		dropArea.innerText=t;
     });
 });
