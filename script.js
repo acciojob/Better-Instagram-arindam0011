@@ -18,8 +18,8 @@ areasOfDrop.forEach(div => {
         let tempBackground = getComputedStyle(dropArea).backgroundImage;
         dropArea.style.backgroundImage = getComputedStyle(selectedArea).backgroundImage;
         selectedArea.style.backgroundImage = tempBackground;
-		let t=selectedArea.innerText;
-		selectedArea.innerText=dropArea.innerText;
-		dropArea.innerText=t;
+		// let t=selectedArea.innerText;
+		// selectedArea.innerText=dropArea.innerText;
+		// dropArea.innerText=t;
     });
 });
